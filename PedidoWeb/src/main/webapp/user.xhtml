@@ -6,7 +6,7 @@
 
 <h:head></h:head>
 <body>
-	<h:form>
+	<h:form id="frmUsuario">
 
 		<h:panelGrid id="painel" columns="2" border="1" cellpadding="10"
 			cellspacing="1">
@@ -21,15 +21,19 @@
 			<h:selectBooleanCheckbox value="#{userController.user.ativo}" />
 			<f:facet name="footer">
 				<h:panelGroup style="display:block; text-align:center">
-					<h:commandButton action="#{userController.salvar}"
-						value="Salvar">
-						<f:ajax execute="painel" render="tabela"></f:ajax>
+					<h:commandButton action="#{userController.salvar}" value="Salvar">
+						<f:ajax execute="painel" render="frmUsuario"></f:ajax>
+					</h:commandButton>
+					
+					<h:commandButton rendered="#{userController.modoEdicao}"
+						action="#{userController.cancelar}" value="Cancelar">
+						<f:ajax render="painel"/>
 					</h:commandButton>
 				</h:panelGroup>
 			</f:facet>
 		</h:panelGrid>
 
-		<h:dataTable id="tabela" value="#{userController.users}" var="user"
+		<h:dataTable id="tabelaUsuario" value="#{userController.users}" var="user"
 			styleClass="userTable" headerClass="userTableHeader"
 			rowClasses="userTableOddRow,userTableEvenRow">
 			<h:column>
@@ -44,11 +48,11 @@
 				<f:facet name="header">Ação</f:facet>
 				<h:commandButton action="#{userController.excluir(u)}"
 					value="Excluir" onclick="return window.confirm('Certeza?')">
-					<f:ajax render="painel:tabela" />
+					<f:ajax render="frmUusario:tabelaUsuario" />
 				</h:commandButton>
 
 				<h:commandButton action="#{userController.editar(u)}" value="Editar">
-					<f:ajax render="painel" />
+					<f:ajax render="frmUsuario" />
 				</h:commandButton>
 
 			</h:column>

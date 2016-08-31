@@ -21,6 +21,8 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
+	private boolean modoEdicao = false;
+
 	@PostConstruct
 	public void init() {
 		users = userRepository.findAll();
@@ -29,8 +31,10 @@ public class UserController {
 	public void salvar() {
 
 		userRepository.save(getUser());
-		users.add(user);
+		if (!isModoEdicao())
+			users.add(user);
 		user = new User();
+		setModoEdicao(false);
 
 	}
 
@@ -50,6 +54,12 @@ public class UserController {
 
 	public void editar(User user) {
 		setUser(user);
+		setModoEdicao(true);
+	}
+
+	public void cancelar() {
+		user = new User();
+		setModoEdicao(false);
 	}
 
 	public User getUser() {
@@ -66,6 +76,14 @@ public class UserController {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public boolean isModoEdicao() {
+		return modoEdicao;
+	}
+
+	public void setModoEdicao(boolean modoEdicao) {
+		this.modoEdicao = modoEdicao;
 	}
 
 }
