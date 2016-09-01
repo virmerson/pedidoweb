@@ -5,58 +5,70 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head></h:head>
-<body>
-	<h:form id="frmUsuario">
+<h:body>
+	<h:form id="formulario">
+		<h:outputText id="titulo" value="Cadastro de Usuário"
+			style="font-weight: bold;" />
+		<h:panelGrid id="dados" columns="2">
+			<h:outputText id="loginLabel" value="Login:" />
+			<h:inputText id="login" label="Login"
+				value="#{userController.user.login}" maxlength="50" />
+			<h:outputText id="senhaLabel" value="Senha:" />
+			<h:inputSecret id="senha" value="" />
+			<h:outputText id="statusLabel" value="Status:" />
+			<h:selectBooleanCheckbox id="ativostatus"
+				value="#{userController.user.ativo}" />
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:commandButton action="#{userController.salvar}" value="Salvar">
+				<f:ajax execute="formulario" render="tabela"></f:ajax>
+			</h:commandButton>
 
-		<h:panelGrid id="painel" columns="2" border="1" cellpadding="10"
-			cellspacing="1">
-			<f:facet name="header">
-				<h:outputText value="Cadastro usuario" />
-			</f:facet>
-			<h:outputLabel value="Login" />
-			<h:inputText value="#{userController.user.login}" />
-			<h:outputLabel value="Senha" />
-			<h:inputSecret value="#{userController.user.senha}" />
-			<h:outputLabel value="Ativo" />
-			<h:selectBooleanCheckbox value="#{userController.user.ativo}" />
-			<f:facet name="footer">
-				<h:panelGroup style="display:block; text-align:center">
-					<h:commandButton action="#{userController.salvar}" value="Salvar">
-						<f:ajax execute="painel" render="frmUsuario"></f:ajax>
-					</h:commandButton>
-					
-					<h:commandButton rendered="#{userController.modoEdicao}"
-						action="#{userController.cancelar}" value="Cancelar">
-						<f:ajax render="painel"/>
-					</h:commandButton>
-				</h:panelGroup>
-			</f:facet>
+			<h:commandButton rendered="#{userController.modoEdicao}"
+				action="#{userController.cancelar}" value="Cancelar">
+				<f:ajax render="formulario"></f:ajax>
+			</h:commandButton>
 		</h:panelGrid>
 
-		<h:dataTable id="tabelaUsuario" value="#{userController.users}" var="user"
-			styleClass="userTable" headerClass="userTableHeader"
-			rowClasses="userTableOddRow,userTableEvenRow">
-			<h:column>
-				<f:facet name="header">Login</f:facet>    				
-            #{user.login}
-         </h:column>
-			<h:column>
-				<f:facet name="header">Ativo</f:facet>
-            #{user.ativo}
-         </h:column>
+		<h:messages id="msg" />
+
+		<h:dataTable id="tabela" value="#{userController.users}" var="u"
+			style="width: 100%">
+			
+			<h:column id="columnCodigo">
+				<f:facet name="header">
+					<h:outputText id="headerCodigo" value="Codigo" />
+				</f:facet>
+				<h:outputText id="valorCodigo" value="#{u.id}" />
+			</h:column>
+			<h:column id="columnNome">
+				<f:facet name="header">
+					<h:outputText id="headerLogin" value="Login" />
+				</f:facet>
+				<h:outputText id="valorLogin" value="#{u.login}" />
+			</h:column>
+
+			<h:column id="columnStatus">
+				<f:facet name="header">
+					<h:outputText id="headerStatus" value="Status" />
+				</f:facet>
+				<h:outputText id="valorStatus"
+					value="#{u.ativo ? 'Ativo' : 'Inativo'}" />
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">Ação</f:facet>
 				<h:commandButton action="#{userController.excluir(u)}"
 					value="Excluir" onclick="return window.confirm('Certeza?')">
-					<f:ajax render="frmUusario:tabelaUsuario" />
+					<f:ajax render="formulario:tabela" />
 				</h:commandButton>
 
 				<h:commandButton action="#{userController.editar(u)}" value="Editar">
-					<f:ajax render="frmUsuario" />
+					<f:ajax render="formulario" />
 				</h:commandButton>
 
 			</h:column>
 		</h:dataTable>
 	</h:form>
-</body>
+</h:body>
 </html>
