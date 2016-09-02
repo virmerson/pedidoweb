@@ -6,21 +6,23 @@ import javax.persistence.Embeddable;
 public class Address {
 	
 	private String bairro;
-	private String lagradouro;
+	private String logradouro;
 	private String cep;
 	private String complemento;
+	private Integer numero;
 	
 	public Address() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(String bairro, String lagradouro, String cep,
-			String complemento) {
+	public Address(String bairro, String logradouro, String cep,
+			String complemento, Integer numero) {
 		super();
 		this.bairro = bairro;
-		this.lagradouro = lagradouro;
+		this.logradouro = logradouro;
 		this.cep = cep;
 		this.complemento = complemento;
+		this.numero = numero;
 	}
 
 	public String getBairro() {
@@ -31,12 +33,12 @@ public class Address {
 		this.bairro = bairro;
 	}
 
-	public String getLagradouro() {
-		return lagradouro;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setLagradouro(String lagradouro) {
-		this.lagradouro = lagradouro;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getCep() {
@@ -54,6 +56,15 @@ public class Address {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
 	
 	
 
