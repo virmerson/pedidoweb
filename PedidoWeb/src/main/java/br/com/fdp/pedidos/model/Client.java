@@ -30,10 +30,9 @@ public class Client {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Client(long id, String nome, Date dataNascimento, String email,
+	public Client(String nome, Date dataNascimento, String email,
 			String telefone, String cpf, Address address) {
-		super();
-		this.id = id;
+
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.email = email;
@@ -45,55 +44,42 @@ public class Client {
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getTelefone() {
 		return telefone;
 	}
-
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
 	public String getCpf() {
 		return cpf;
 	}
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 	public Address getAddress() {
 		return address;
 	}
-
 	public void setAddress(Address address) {
 		this.address = address;
 	}

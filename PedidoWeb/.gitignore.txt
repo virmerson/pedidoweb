@@ -1,0 +1,10 @@
+.idea
+.mvn
+.settings
+/target
+PedidoWeb.iml
+.classpath
+.project
+mvnw.cmd
+mvnw
+

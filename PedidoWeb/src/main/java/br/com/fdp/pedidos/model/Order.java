@@ -42,8 +42,6 @@ public class Order {
 	public Order(Long id, Client client, Date dataPedido, Date dataEntrega,
 			Address enderecoEntrega, BigDecimal valorTotal,
 			Ceremonial ceremonial) {
-		super();
-		this.id = id;
 		this.client = client;
 		this.dataPedido = dataPedido;
 		this.dataEntrega = dataEntrega;
@@ -55,55 +53,42 @@ public class Order {
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public Client getClient() {
 		return client;
 	}
-
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
 	public Date getDataPedido() {
 		return dataPedido;
 	}
-
 	public void setDataPedido(Date dataPedido) {
 		this.dataPedido = dataPedido;
 	}
-
 	public Date getDataEntrega() {
 		return dataEntrega;
 	}
-
 	public void setDataEntrega(Date dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
-
 	public Address getEnderecoEntrega() {
 		return enderecoEntrega;
 	}
-
 	public void setEnderecoEntrega(Address enderecoEntrega) {
 		this.enderecoEntrega = enderecoEntrega;
 	}
-
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
-
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
 	public Ceremonial getCeremonial() {
 		return ceremonial;
 	}
-
 	public void setCeremonial(Ceremonial ceremonial) {
 		this.ceremonial = ceremonial;
 	}
@@ -176,7 +161,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", client=" + client + ", dataPedido="
+		return "Order [id=" + id + ", client.xhtml=" + client + ", dataPedido="
 				+ dataPedido + ", dataEntrega=" + dataEntrega
 				+ ", enderecoEntrega=" + enderecoEntrega + ", valorTotal="
 				+ valorTotal + ", ceremonial=" + ceremonial + "]";

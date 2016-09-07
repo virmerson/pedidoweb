@@ -6,8 +6,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class PedidoWebApplication {
-	
+public class PedidoWebApplication extends SpringBootServletInitializer{
+    
+	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(PedidoWebApplication.class);
 	}

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+<h:head></h:head>
+<h:body>
+    <h:form id="frmClient">
+        .:Dados Pessoais:.
+
+        Nome: <h:inputText value="#{clientController.client.nome}"/>
+        E-Mail: <h:inputText value="#{clientController.client.email}"/>
+        Telefone: <h:inputText value="#{clientController.client.telefone}"/>
+        CPF: <h:inputText value="#{clientController.client.cpf}"/>
+        Data de Nascimento: <h:inputText value="#{clientController.client.dataNascimento}"/>
+
+        .:Endereço:.
+
+        CEP: <h:inputText value="#{clientController.address.cep}"/>
+        Lagradouro: <h:inputText value="#{clientController.address.lagradouro}"/>
+        Bairro: <h:inputText value="#{clientController.address.bairro}"/>
+        Complemento: <h:inputText value="#{clientController.address.complemento}"/>
+
+        <h:commandButton value="#{clientController.saveClient()}">
+            <f:ajax execute="frmClient" render="frmClient"/>
+        </h:commandButton>
+        <h:commandButton rendered="#{clientController.editMode}" action="#{clientController.cancelEdit}" value="Cancelar"></h:commandButton>
+
+        <h:dataTable value="#{clientController.clientList}" var="client" id="dtClient">
+            <h:column>
+                <f:facet name="header">NOME</f:facet>
+                #{client.nome}
+            </h:column>
+            <h:column>
+                <f:facet name="header">EMAIL</f:facet>
+                #{client.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">CPF</f:facet>
+                #{client.cpf}
+            </h:column>
+            <h:column>
+                <f:facet name="header">DATA DE NASCIMENTO</f:facet>
+                #{client.dataNascimento}
+            </h:column>
+            <h:column>
+                <f:facet name="header">AÇÃO</f:facet>
+                <h:commandButton action="#{clientController.deleteClient(client)}" value="Excluir" onclick="return window.confirm('Certeza?')">
+                    <f:ajax render="frmClient:dtClient"/>
+                </h:commandButton>
+                <h:commandButton action="#{clientController.updateClient(client)}" value="Editar">
+                    <f:ajax render="frmClient"/>
+                </h:commandButton>
+                <h:commandButton  action="#{clientController.showClientAddress}" value="Ver Endereço">
+                    <f:ajax render="AdClient"/>
+                </h:commandButton>
+            </h:column>
+        </h:dataTable>
+            Endereço do Cliente #{clientController.client.nome}
+        <h:dataTable value="#{clientController.client}" var="client" id="AdClient">
+            <h:column>
+                <f:facet name="header">CEP</f:facet>
+                #{client.address.cep}
+            </h:column>
+            <h:column>
+                <f:facet name="header">LAGRADOURO</f:facet>
+                #{client.address.lagradouro}
+            </h:column>
+            <h:column>
+                <f:facet name="header">BAIRRO</f:facet>
+                #{client.address.bairro}
+            </h:column>
+            <h:column>
+                <f:facet name="header">COMPLEMENTO</f:facet>
+                #{client.address.complemento}
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>

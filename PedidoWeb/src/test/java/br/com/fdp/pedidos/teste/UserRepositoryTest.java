@@ -22,17 +22,17 @@ public class UserRepositoryTest {
 	private UserRepository userRepostory;
 
 	@Test
-	public void salvar() {
+	public void saveUser() {
 
 		User user = new User();
 		user.setLogin("Jao");
 		user.setSenha("1234");
 		user.setAtivo(true);
 
-		User userSalvo = userRepostory.save(user);
+		User savedUser = userRepostory.save(user);
 
-		assertThat(userSalvo.getLogin()).isEqualTo(userSalvo.getLogin());
-		assertThat(userSalvo.getSenha()).isEqualTo(userSalvo.getSenha());
+		assertThat(savedUser.getLogin()).isEqualTo(savedUser.getLogin());
+		assertThat(savedUser.getSenha()).isEqualTo(savedUser.getSenha());
 	}
 
 }
