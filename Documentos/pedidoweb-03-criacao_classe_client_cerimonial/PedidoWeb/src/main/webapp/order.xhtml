@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h:form id="formulario">
+		<h:outputText id="titulo" value="Cadastro de Produtos"
+			style="font-weight: bold;" />
+		<h:panelGrid id="dados" columns="2">
+		
+		<h:outputLabel for="order" value="Cliente:" />
+			<h:selectOneMenu id="order" filter="true"
+				value="#{orderController.order.order}"
+				converter="omnifaces.SelectItemsConverter" required="true"
+				requiredMessage="O campo 'Cliente' é obrigatório">
+				<f:selectItem noSelectionOption="true"
+					itemLabel="Selecione um cliente "/>
+				<f:selectItems value="#{orderController.orders}" var="order"
+					itemValue="#{order}" itemLabel="#{order.nome}" />
+			</h:selectOneMenu>
+			
+			<h:outputLabel for="ceremonial" value="Cerimonial:" />
+			<h:selectOneMenu id="ceremonial" filter="true"
+				value="#{orderController.order.ceremonial}"
+				converter="omnifaces.SelectItemsConverter" required="true"
+				requiredMessage="O campo 'Cerimonial' é obrigatório">
+				<f:selectItem noSelectionOption="true"
+					itemLabel="Selecione um cerimonial" />
+				<f:selectItems value="#{ordertController.ceremonials}" var="ce"
+					itemValue="#{ce}" itemLabel="#{ce.nome}" />
+			</h:selectOneMenu>
+			
+
+			<h:outputText id="pedidoLabel" value="Data do Pedido:" />
+			<h:inputText id="pedido" label="Data do Pedido"
+				value="#{orderController.order.dataPedido}" maxlength="10">
+				<f:convertDateTime id="padraoData" pattern="dd/MM/yyyy"
+					timeZone="America/Sao_Paulo" />
+			</h:inputText>
+			<h:outputText id="entregaLabel" value="Data da Entrega:" />
+			<h:inputText id="entrega" label="Data da Entrega"
+				value="#{orderController.order.dataEntrega}" maxlength="10">
+				<f:convertDateTime id="padraoData" pattern="dd/MM/yyyy"
+					timeZone="America/Sao_Paulo" />
+			</h:inputText>
+		
+			<h:outputText id="bairroLabel" value="Bairro:" />
+			<h:inputText id="bairro" label="Bairro"
+				value="#{orderController.order.address.bairro}" maxlength="50" />
+
+			<h:outputText id="complementoLabel" value="Complemento:" />
+			<h:inputText id="complemento" label="complemento"
+				value="#{orderController.order.address.complemento}"
+				maxlength="50" />
+
+			<h:outputText id="numeroLabel" value="Numero:" />
+			<h:inputText id="numero" label="Numero"
+				value="#{orderController.order.address.numero}" maxlength="50" />
+
+
+			<h:outputText id="cepLabel" value="Cep:" />
+			<h:inputText id="cep" label="Cep"
+				value="#{orderController.order.address.cep}" maxlength="50" />
+
+
+		</h:panelGrid>
+		<h:commandButton action="#{orderController.save}" value="Salvar">
+			<f:ajax execute="formulario" render="tabela"></f:ajax>
+		</h:commandButton>
+
+		<h:commandButton rendered="#{orderController.modoEdicao}"
+			action="#{orderController.cancelar}" value="Cancelar">
+			<f:ajax render="formulario"></f:ajax>
+		</h:commandButton>
+		<h:messages id="msg" />
+		<h:dataTable id="tabela" value="#{orderController.orders}" var="o"
+			style="width: 100%">
+			
+			<h:column id="columnCodigo">
+				<f:facet name="header">
+					<h:outputText id="headerCodigo" value="Codigo" />
+				</f:facet>
+				<h:outputText id="valorCodigo" value="#{o.id}" />
+			</h:column>
+			
+			<h:column id="columnNome">
+				<f:facet name="header">
+					<h:outputText id="headerNome" value="Nome" />
+				</f:facet>
+				<h:outputText id="valorNome" value="#{o.client.nome}" />
+			</h:column>
+		
+		<h:column id="columnCeremonial">
+				<f:facet name="header">
+					<h:outputText id="headerCerimonial" value="Cerimonial" />
+				</f:facet>
+				<h:outputText id="valorCerimonial" value="#{o.ceremonial.nome}" />
+			</h:column>
+		
+			<h:column id="columnTelefone">
+				<f:facet name="header">
+					<h:outputText id="headerTelefone" value="Telefone" />
+				</f:facet>
+				<h:outputText id="valorTelefone" value="#{o.ceremonial.telefone}" />
+			</h:column>
+		
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton action="#{orderController.remove(o)}"
+					value="Excluir" onclick="return window.confirm('Certeza?')">
+					<f:ajax render="formulario:tabela" />
+				</h:commandButton>
+
+				<h:commandButton action="#{orderController.editar(o)}"
+					value="Editar">
+					<f:ajax render="formulario" />
+				</h:commandButton>
+
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

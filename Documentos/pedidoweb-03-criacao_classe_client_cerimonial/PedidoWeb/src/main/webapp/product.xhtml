@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/faplets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h:form id="formulario">
+		<h:outputText id="titulo" value="Cadastro de Produto"
+			style="font-weight: bold;" />
+		<h:panelGrid id="dados" columns="2">
+			<h:outputText id="descricaoLabel" value="Descrição:" />
+			<h:inputText id="descricao" label="Descrição:"
+				value="#{productController.product.descricao}" maxlength="50" />
+				
+				<h:outputText id="quantidadeLabel" value="Quantidade:" />
+			<h:inputText id="quantidade" label="Quantidade:"
+				value="#{productController.product.quantidade}" maxlength="50" />
+
+			<h:outputText id="valorLabel" value="Valor:" />
+			<h:inputText id="valor" label="Valor:"
+				value="#{productController.product.valor}" maxlength="50">
+				<f:convertNumber minFractionDigits="2" />
+			</h:inputText>
+
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:commandButton action="#{productController.save}" value="Salvar">
+				<f:ajax execute="formulario" render="formulario" ></f:ajax>
+			</h:commandButton>
+
+			<h:commandButton rendered="#{productController.modoEdicao}"
+				action="#{productController.cancelar}" value="Cancelar">
+				<f:ajax render="formulario"></f:ajax>
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:messages id="msg" />
+
+		<h:dataTable id="tabela" value="#{productController.products}"
+			var="p" style="width: 100%">
+
+			<h:column id="columnCodigo">
+				<f:facet name="header">
+					<h:outputText id="headerCodigo" value="Codigo" />
+				</f:facet>
+				<h:outputText id="valorCodigo" value="#{p.id}" />
+			</h:column>
+			<h:column id="columnDescrição">
+				<f:facet name="header">
+					<h:outputText id="headerDescrição" value="Descrição" />
+				</f:facet>
+				<h:outputText id="valorDescrição" value="#{p.descricao}" />
+			</h:column>
+			
+			<h:column id="columnQuantidade">
+				<f:facet name="header">
+					<h:outputText id="headerQuantidade" value="Quantidade" />
+				</f:facet>
+				<h:outputText id="valorQuantidade" value="#{p.quantidade}" />
+			</h:column>
+
+			<h:column id="columnValor">
+				<f:facet name="header">
+					<h:outputText id="headerValor" value="Valor" />
+				</f:facet>
+				<h:outputText id="valorValor" value="#{p.valor}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton action="#{productController.remove(p)}"
+					value="Excluir" onclick="return window.confirm('Certeza?')">
+					<f:ajax render="formulario:tabela" />
+				</h:commandButton>
+
+				<h:commandButton action="#{productController.editar(p)}"
+					value="Editar">
+					<f:ajax render="formulario" />
+				</h:commandButton>
+
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

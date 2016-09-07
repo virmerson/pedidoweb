@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h:form id="formulario">
+		<h:outputText id="titulo" value="Cadastro de Embrulho"
+			style="font-weight: bold;" />
+		<h:panelGrid id="dados" columns="2">
+			<h:outputText id="descricaoLabel" value="Descrição:" />
+			<h:inputText id="descricao" label="Descrição:"
+				value="#{packageController.embrulho.descricao}" maxlength="50" />
+		
+				
+			<h:outputText id="valorLabel" value="Valor:" />
+			<h:inputText id="valor" label="Valor:"
+				value="#{packageController.embrulho.valorPackage}" maxlength="50">
+				<f:convertNumber minFractionDigits="2" />
+			</h:inputText>
+
+			
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:commandButton action="#{packageController.save}" value="Salvar">
+				<f:ajax execute="formulario" render="formulario"></f:ajax>
+			</h:commandButton>
+
+			<h:commandButton rendered="#{packageController.modoEdicao}"
+				action="#{embrulhoController.cancelar}" value="Cancelar">
+				<f:ajax render="formulario"></f:ajax>
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:messages id="msg" />
+
+		<h:dataTable id="tabela" value="#{packageController.embrulhos}" var="e"
+			style="width: 100%">
+			
+			<h:column id="columnCodigo">
+				<f:facet name="header">
+					<h:outputText id="headerCodigo" value="Codigo" />
+				</f:facet>
+				<h:outputText id="valorCodigo" value="#{e.id}" />
+			</h:column>
+			<h:column id="columnNome">
+				<f:facet name="header">
+					<h:outputText id="headerDescricao" value="Descricao" />
+				</f:facet>
+				<h:outputText id="valorDescricao" value="#{e.descricao}" />
+			</h:column>
+			
+			<h:column id="columnValor">
+				<f:facet name="header">
+					<h:outputText id="headerValor" value="Valor" />
+				</f:facet>
+				<h:outputText id="valorValor" value="#{e.valorPackage}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton action="#{packageController.remove(e)}"
+					value="Excluir" onclick="return window.confirm('Certeza?')">
+					<f:ajax render="formulario:tabela" />
+				</h:commandButton>
+
+				<h:commandButton action="#{packageController.editar(e)}" value="Editar">
+					<f:ajax render="formulario" />
+				</h:commandButton>
+
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>

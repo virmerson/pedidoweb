@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h:form id="formulario">
+		<h:outputText id="titulo" value="Cadastro de Estados"
+			style="font-weight: bold;" />
+		<h:panelGrid id="dados" columns="2">
+			<h:outputText id="loginLabel" value="UF:" />
+			<h:inputText id="uf" label="UF"
+				value="#{stateController.state.uf}" maxlength="50" />
+			
+		</h:panelGrid>
+		<h:panelGrid columns="2">
+			<h:commandButton action="#{stateController.save}" value="Salvar">
+				<f:ajax execute="formulario" render="formulario" ></f:ajax>
+			</h:commandButton>
+
+			<h:commandButton rendered="#{stateController.modoEdicao}"
+				action="#{stateController.cancelar}" value="Cancelar">
+				<f:ajax render="formulario"></f:ajax>
+			</h:commandButton>
+		</h:panelGrid>
+
+		<h:messages id="msg" />
+
+		<h:dataTable id="tabela" value="#{stateController.states}" var="s"
+			style="width: 100%">
+			
+			<h:column id="columnCodigo">
+				<f:facet name="header">
+					<h:outputText id="headerCodigo" value="Codigo" />
+				</f:facet>
+				<h:outputText id="valorCodigo" value="#{s.id}" />
+			</h:column>
+			<h:column id="columnNome">
+				<f:facet name="header">
+					<h:outputText id="headerUF" value="UF" />
+				</f:facet>
+				<h:outputText id="valorUF" value="#{s.uf}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Ação</f:facet>
+				<h:commandButton action="#{stateController.remove(s)}"
+					value="Excluir" onclick="return window.confirm('Certeza?')">
+					<f:ajax render="formulario:tabela" />
+				</h:commandButton>
+
+				<h:commandButton action="#{stateController.editar(s)}" value="Editar">
+					<f:ajax render="formulario" />
+				</h:commandButton>
+
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
