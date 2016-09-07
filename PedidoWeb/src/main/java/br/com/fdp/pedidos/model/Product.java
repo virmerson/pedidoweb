@@ -13,15 +13,15 @@ import javax.persistence.Table;
 public class Product {
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	@Column(length = 80, nullable = false)
-	private String descricao;
+	private String description;
 	
 	@Column(nullable = false)
-	private Short quantidade;
+	private Short quantity;
 	
 	@Column(nullable = false, precision = 6, scale = 2)
-	private BigDecimal valor;
+	private BigDecimal value;
 	
 	public Product() {
 		// TODO Auto-generated constructor stub
@@ -30,41 +30,41 @@ public class Product {
 	public Product(long id, String descricao, Short quantidade, BigDecimal valor) {
 		super();
 		this.id = id;
-		this.descricao = descricao;
-		this.quantidade = quantidade;
-		this.valor = valor;
+		this.description = descricao;
+		this.quantity = quantidade;
+		this.value = valor;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return description;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.description = descricao;
 	}
 
 	public Short getQuantidade() {
-		return quantidade;
+		return quantity;
 	}
 
 	public void setQuantidade(Short quantidade) {
-		this.quantidade = quantidade;
+		this.quantity = quantidade;
 	}
 
 	public BigDecimal getValor() {
-		return valor;
+		return value;
 	}
 
 	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+		this.value = valor;
 	}
 
 	@Override
@@ -72,10 +72,10 @@ public class Product {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((descricao == null) ? 0 : descricao.hashCode());
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result
-				+ ((quantidade == null) ? 0 : quantidade.hashCode());
+				+ ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
 
@@ -88,25 +88,25 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if (descricao == null) {
-			if (other.descricao != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!descricao.equals(other.descricao))
+		} else if (!description.equals(other.description))
 			return false;
 		if (id != other.id)
 			return false;
-		if (quantidade == null) {
-			if (other.quantidade != null)
+		if (quantity == null) {
+			if (other.quantity != null)
 				return false;
-		} else if (!quantidade.equals(other.quantidade))
+		} else if (!quantity.equals(other.quantity))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", descricao=" + descricao
-				+ ", quantidade=" + quantidade + "]";
+		return "Product [id=" + id + ", description=" + description
+				+ ", quantity=" + quantity + "]";
 	}
 	
 	
