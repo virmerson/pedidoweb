@@ -7,19 +7,19 @@
 <h:head></h:head>
 <h:body>
 	<h:form id="formulario">
-		<h:outputText id="titulo" value="Cadastro de Produtos"
+		<h:outputText id="titulo" value="Cadastro de Pedidos"
 			style="font-weight: bold;" />
 		<h:panelGrid id="dados" columns="2">
 
-			<h:outputLabel for="order" value="Cliente:" />
-			<h:selectOneMenu id="order" filter="true"
+			<h:outputLabel for="client" value="Cliente:" />
+			<h:selectOneMenu id="client" filter="true"
 				value="#{orderController.order.client}"
 				converter="#{clientConverter}" required="true"
 				requiredMessage="O campo 'Cliente' é obrigatório">
 				<f:selectItem noSelectionOption="true"
 					itemLabel=".:Selecione um cliente:. " />
-				<f:selectItems value="#{orderController.clients}" var="order"
-					itemValue="#{order}" itemLabel="#{order.nome}" />
+				<f:selectItems value="#{orderController.clients}" var="client"
+					itemValue="#{client}" itemLabel="#{client.nome}" />
 			</h:selectOneMenu>
 
 			<h:outputLabel for="ceremonial" value="Cerimonial:" />
@@ -29,7 +29,7 @@
 				requiredMessage="O campo 'Cerimonial' é obrigatório">
 				<f:selectItem noSelectionOption="true"
 					itemLabel=".:Selecione um cerimonial:." />
-				<f:selectItems value="#{ordertController.ceremonials}" var="ce"
+				<f:selectItems value="#{orderController.ceremonials}" var="ce"
 					itemValue="#{ce}" itemLabel="#{ce.nome}" />
 			</h:selectOneMenu>
 
