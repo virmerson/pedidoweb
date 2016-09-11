@@ -36,7 +36,7 @@ public class Order {
 	private Ceremonial ceremonial;
 	
 	public Order() {
-		// TODO Auto-generated constructor stub
+		enderecoEntrega = new Address();
 	}
 
 	public Order(Long id, Client client, Date dataPedido, Date dataEntrega,

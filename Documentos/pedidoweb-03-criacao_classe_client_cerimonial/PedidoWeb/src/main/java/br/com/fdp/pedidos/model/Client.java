@@ -18,7 +18,7 @@ public class Client {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	private String nome;
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
@@ -36,7 +36,7 @@ public class Client {
 		address = new Address();
 	}
 
-	public Client(long id, String nome, Date dataNascimento, String email,
+	public Client(Long id, String nome, Date dataNascimento, String email,
 			String telefone, String cpf, String nomeNoivo, State state,
 			Address address) {
 		super();
@@ -51,11 +51,11 @@ public class Client {
 		this.address = address;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

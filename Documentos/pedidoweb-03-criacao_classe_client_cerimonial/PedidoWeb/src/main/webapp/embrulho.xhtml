@@ -37,7 +37,12 @@
 		<h:messages id="msg" />
 
 		<h:dataTable id="tabela" value="#{packageController.embrulhos}" var="e"
-			style="width: 100%">
+			cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
+			rules="all" style="width: 100%" border="10">
+
+			<f:facet name="header">
+				<h:outputText value="Embrulho" />
+			</f:facet>
 			
 			<h:column id="columnCodigo">
 				<f:facet name="header">
