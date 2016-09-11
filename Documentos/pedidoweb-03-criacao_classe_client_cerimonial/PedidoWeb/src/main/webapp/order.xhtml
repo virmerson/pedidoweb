@@ -9,7 +9,7 @@
 	<h:form id="formulario">
 		<h:outputText id="titulo" value="Cadastro de Pedidos"
 			style="font-weight: bold;" />
-		<h:panelGrid id="dados" columns="2">
+		<h:panelGrid id="dados" columns="4">
 
 			<h:outputLabel for="client" value="Cliente:" />
 			<h:selectOneMenu id="client" filter="true"
@@ -95,7 +95,7 @@
 
 			<h:column id="columnNome">
 				<f:facet name="header">
-					<h:outputText id="headerNome" value="Nome" />
+					<h:outputText id="headerNome" value="Cliente" />
 				</f:facet>
 				<h:outputText id="valorNome" value="#{o.client.nome}" />
 			</h:column>
