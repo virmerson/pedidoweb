@@ -4,8 +4,11 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
-<h:body>
+<ui:composition template="/template.xhtml">
+    <ui:define name="menu">
+      <h:commandLink value="Inicio"  action="/template.xhtml"/>
+    </ui:define>
+    <ui:define name="conteudo">
 	<h:form id="formulario">
 		<h:outputText id="titulo" value="Cadastro de Estados"
 			style="font-weight: bold;" />
@@ -63,5 +66,6 @@
 			</h:column>
 		</h:dataTable>
 	</h:form>
-</h:body>
+ </ui:define>
+  </ui:composition>
 </html>

@@ -4,142 +4,147 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head>
-<h:body>
-	<h:form id="formulario">
-		<h:outputText id="titulo" value="Cadastro de Cliente"
-			style="font-weight: bold;" />
-		<h:panelGrid id="dados" columns="4">
-			<h:outputText id="nomeLabel" value="Nome:" />
-			<h:inputText id="nome" label="Nome"
-				value="#{clientController.client.nome}" maxlength="50" />
+<ui:composition template="/template.xhtml">
+	<ui:define name="menu">
+		<h:commandLink value="Inicio" action="/template.xhtml" />
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:form id="formulario">
+			<h:outputText id="titulo" value="Cadastro de Cliente"
+				style="font-weight: bold;" />
+			<h:panelGrid id="dados" columns="4">
+				<h:outputText id="nomeLabel" value="Nome:" />
+				<h:inputText id="nome" label="Nome"
+					value="#{clientController.client.nome}" maxlength="50" />
 
-			<h:outputText id="cpfLabel" value="CPF:" />
-			<h:inputText id="cpf" label="cpf"
-				value="#{clientController.client.cpf}" maxlength="50" />
+				<h:outputText id="cpfLabel" value="CPF:" />
+				<h:inputText id="cpf" label="cpf"
+					value="#{clientController.client.cpf}" maxlength="50" />
 
-			<h:outputText id="noivoLabel" value="Nome noivo:" />
-			<h:inputText id="noivo" label="Nome noivo"
-				value="#{clientController.client.nomeNoivo}" maxlength="50" />
+				<h:outputText id="noivoLabel" value="Nome noivo:" />
+				<h:inputText id="noivo" label="Nome noivo"
+					value="#{clientController.client.nomeNoivo}" maxlength="50" />
 
-			<h:outputText id="telefoneLabel" value="Telefone:" />
-			<h:inputText id="telefone" label="Telefone"
-				value="#{clientController.client.telefone}" maxlength="50" />
+				<h:outputText id="telefoneLabel" value="Telefone:" />
+				<h:inputText id="telefone" label="Telefone"
+					value="#{clientController.client.telefone}" maxlength="50" />
 
-			<h:outputText id="nascimentoLabel" value="Data de Nascimento:" />
-			<h:inputText id="nascimento" label="Data de Nascimento"
-				value="#{clientController.client.dataNascimento}" maxlength="10">
-				<f:convertDateTime id="padraoData" pattern="dd/MM/yyyy"
-					timeZone="America/Sao_Paulo" />
-			</h:inputText>
-			<h:outputText id="emailLabel" value="Email:" />
-			<h:inputText id="email" label="Email"
-				value="#{clientController.client.email}" maxlength="50" />
+				<h:outputText id="nascimentoLabel" value="Data de Nascimento:" />
+				<h:inputText id="nascimento" label="Data de Nascimento"
+					value="#{clientController.client.dataNascimento}" maxlength="10">
+					<f:convertDateTime id="padraoData" pattern="dd/MM/yyyy"
+						timeZone="America/Sao_Paulo" />
+				</h:inputText>
+				<h:outputText id="emailLabel" value="Email:" />
+				<h:inputText id="email" label="Email"
+					value="#{clientController.client.email}" maxlength="50" />
 
-			<h:outputText id="logradouroLabel" value="Logradouro:" />
-			<h:inputText id="logradouro" label="Logradoruro"
-				value="#{clientController.client.address.logradouro}" maxlength="50" />
+				<h:outputText id="logradouroLabel" value="Logradouro:" />
+				<h:inputText id="logradouro" label="Logradoruro"
+					value="#{clientController.client.address.logradouro}"
+					maxlength="50" />
 
-			<h:outputText id="bairroLabel" value="Bairro:" />
-			<h:inputText id="bairro" label="Bairro"
-				value="#{clientController.client.address.bairro}" maxlength="50" />
+				<h:outputText id="bairroLabel" value="Bairro:" />
+				<h:inputText id="bairro" label="Bairro"
+					value="#{clientController.client.address.bairro}" maxlength="50" />
 
-			<h:outputText id="complementoLabel" value="Complemento:" />
-			<h:inputText id="complemento" label="complemento"
-				value="#{clientController.client.address.complemento}"
-				maxlength="50" />
+				<h:outputText id="complementoLabel" value="Complemento:" />
+				<h:inputText id="complemento" label="complemento"
+					value="#{clientController.client.address.complemento}"
+					maxlength="50" />
 
-			<h:outputText id="numeroLabel" value="Numero:" />
-			<h:inputText id="numero" label="Numero"
-				value="#{clientController.client.address.numero}" maxlength="50" />
+				<h:outputText id="numeroLabel" value="Numero:" />
+				<h:inputText id="numero" label="Numero"
+					value="#{clientController.client.address.numero}" maxlength="50" />
 
 
-			<h:outputText id="cepLabel" value="Cep:" />
-			<h:inputText id="cep" label="Cep"
-				value="#{clientController.client.address.cep}" maxlength="50" />
+				<h:outputText id="cepLabel" value="Cep:" />
+				<h:inputText id="cep" label="Cep"
+					value="#{clientController.client.address.cep}" maxlength="50" />
 
-			<h:outputLabel for="estado" value="Estado:" />
-			<h:selectOneMenu id="estado" filter="true"
-				value="#{clientController.client.state}"
-				converter="#{stateConverter}" required="true"
-				requiredMessage="O campo 'Estado' é obrigatório">
-				<f:selectItem noSelectionOption="true"
-					itemLabel="Selecione um estado" />
-				<f:selectItems value="#{clientController.states}" var="state"
-					itemValue="#{state}" itemLabel="#{state.uf}" />
-			</h:selectOneMenu>
+				<h:outputLabel for="estado" value="Estado:" />
+				<h:selectOneMenu id="estado" filter="true"
+					value="#{clientController.client.state}"
+					converter="#{stateConverter}" required="true"
+					requiredMessage="O campo 'Estado' é obrigatório">
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione um estado" />
+					<f:selectItems value="#{clientController.states}" var="state"
+						itemValue="#{state}" itemLabel="#{state.uf}" />
+				</h:selectOneMenu>
 
-		</h:panelGrid>
-		<h:commandButton action="#{clientController.save}" value="Salvar">
-			<f:ajax execute="formulario" render="tabela"></f:ajax>
-		</h:commandButton>
+			</h:panelGrid>
+			<h:commandButton action="#{clientController.save}" value="Salvar">
+				<f:ajax execute="formulario" render="tabela"></f:ajax>
+			</h:commandButton>
 
-		<h:commandButton rendered="#{clientController.modoEdicao}"
-			action="#{clientController.cancelar}" value="Cancelar">
-			<f:ajax render="formulario"></f:ajax>
-		</h:commandButton>
-		<h:messages id="msg" />
-		<h:dataTable id="tabela" value="#{clientController.clients}" var="c"
-			cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
-			rules="all" style="width: 100%" border="10">
+			<h:commandButton rendered="#{clientController.modoEdicao}"
+				action="#{clientController.cancelar}" value="Cancelar">
+				<f:ajax render="formulario"></f:ajax>
+			</h:commandButton>
+			<h:messages id="msg" />
+			<h:dataTable id="tabela" value="#{clientController.clients}" var="c"
+				cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
+				rules="all" style="width: 100%" border="10">
 
-			<f:facet name="header">
-				<h:outputText value="Clientes" />
-			</f:facet>>
+				<f:facet name="header">
+					<h:outputText value="Clientes" />
+				</f:facet>>
 			
 			<h:column id="columnCodigo">
-				<f:facet name="header">
-					<h:outputText id="headerCodigo" value="Codigo" />
-				</f:facet>
-				<h:outputText id="valorCodigo" value="#{c.id}" />
-			</h:column>
-			
-			<h:column id="columnNome">
-				<f:facet name="header">
-					<h:outputText id="headerNome" value="Nome" />
-				</f:facet>
-				<h:outputText id="valorNome" value="#{c.nome}" />
-			</h:column>
+					<f:facet name="header">
+						<h:outputText id="headerCodigo" value="Codigo" />
+					</f:facet>
+					<h:outputText id="valorCodigo" value="#{c.id}" />
+				</h:column>
 
-			<h:column id="columnCPF">
-				<f:facet name="header">
-					<h:outputText id="headerCPF" value="CPF" />
-				</f:facet>
-				<h:outputText id="valorCPF" value="#{c.cpf}" />
-			</h:column>
-			<h:column id="columnTelefone">
-				<f:facet name="header">
-					<h:outputText id="headerTelefone" value="Telefone" />
-				</f:facet>
-				<h:outputText id="valorTelefone" value="#{c.telefone}" />
-			</h:column>
-			<h:column id="columnEmail">
-				<f:facet name="header">
-					<h:outputText id="headerEmail" value="Email" />
-				</f:facet>
-				<h:outputText id="email" value="#{c.email}"/>
-					
-			</h:column>
-			<h:column id="columnNoivo">
-				<f:facet name="header">
-					<h:outputText id="headerNoivo" value="noivo" />
-				</f:facet>
-				<h:outputText id="valorNoivo" value="#{c.nomeNoivo}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">Ação</f:facet>
-				<h:commandButton action="#{clientController.remove(c)}"
-					value="Excluir" onclick="return window.confirm('Certeza?')">
-					<f:ajax render="formulario:tabela" />
-				</h:commandButton>
+				<h:column id="columnNome">
+					<f:facet name="header">
+						<h:outputText id="headerNome" value="Nome" />
+					</f:facet>
+					<h:outputText id="valorNome" value="#{c.nome}" />
+				</h:column>
 
-				<h:commandButton action="#{clientController.editar(c)}"
-					value="Editar">
-					<f:ajax render="formulario" />
-				</h:commandButton>
+				<h:column id="columnCPF">
+					<f:facet name="header">
+						<h:outputText id="headerCPF" value="CPF" />
+					</f:facet>
+					<h:outputText id="valorCPF" value="#{c.cpf}" />
+				</h:column>
+				<h:column id="columnTelefone">
+					<f:facet name="header">
+						<h:outputText id="headerTelefone" value="Telefone" />
+					</f:facet>
+					<h:outputText id="valorTelefone" value="#{c.telefone}" />
+				</h:column>
+				<h:column id="columnEmail">
+					<f:facet name="header">
+						<h:outputText id="headerEmail" value="Email" />
+					</f:facet>
+					<h:outputText id="email" value="#{c.email}" />
 
-			</h:column>
-		</h:dataTable>
-	</h:form>
-</h:body>
+				</h:column>
+				<h:column id="columnNoivo">
+					<f:facet name="header">
+						<h:outputText id="headerNoivo" value="noivo" />
+					</f:facet>
+					<h:outputText id="valorNoivo" value="#{c.nomeNoivo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Ação</f:facet>
+					<h:commandButton action="#{clientController.remove(c)}"
+						value="Excluir" onclick="return window.confirm('Certeza?')">
+						<f:ajax render="formulario:tabela" />
+					</h:commandButton>
+
+					<h:commandButton action="#{clientController.editar(c)}"
+						value="Editar">
+						<f:ajax render="formulario" />
+					</h:commandButton>
+
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
