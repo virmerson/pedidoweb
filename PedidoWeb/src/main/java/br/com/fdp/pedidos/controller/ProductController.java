@@ -19,6 +19,7 @@ public class ProductController {
 	private ProductRepository productRepository;
 	private Product product = new Product();
 	private List<Product> products;
+	private boolean editionMode=false;
 	
 	@PostConstruct
 	public void init(){
@@ -51,17 +52,36 @@ public class ProductController {
 		this.products = products;
 	}
 	
+	public boolean isEditionMode() {
+		return editionMode;
+	}
+
+	public void setEditionMode(boolean editionMode) {
+		this.editionMode = editionMode;
+	}
+
 	//CRUD
 	public void save(){
-		productRepository.save(product);
+		productRepository.save(getProduct());
+		
+		if(isEditionMode() == false){
+			products.add(product);
+			product = new Product();
+		}
+		setEditionMode(false);
+		product = new Product();
 	}
 	
 	public void update(Product product){
-		this.product = product;
+		setProduct(product);
+		setEditionMode(true);
+		product = new Product();
 	}
 	
 	public void delete(Product product){
 		productRepository.delete(product);
+		products.remove(product);
+		product = new Product();
 	}
 	
 	public void list(){

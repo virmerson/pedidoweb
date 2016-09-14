@@ -27,15 +27,14 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(long id, String descricao, Short quantidade, BigDecimal valor) {
+	public Product(String descricao, Short quantidade, BigDecimal valor) {
 		super();
-		this.id = id;
 		this.description = descricao;
 		this.quantity = quantidade;
 		this.value = valor;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -43,28 +42,28 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getDescricao() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescricao(String descricao) {
-		this.description = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Short getQuantidade() {
+	public Short getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantidade(Short quantidade) {
-		this.quantity = quantidade;
+	public void setQuantity(Short quantity) {
+		this.quantity = quantity;
 	}
 
-	public BigDecimal getValor() {
+	public BigDecimal getValue() {
 		return value;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.value = valor;
+	public void setValue(BigDecimal value) {
+		this.value = value;
 	}
 
 	@Override

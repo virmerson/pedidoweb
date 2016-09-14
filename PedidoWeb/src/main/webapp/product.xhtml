@@ -1,42 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 
-<h1> Cadastro de Produto </h1>
+	<h1>Cadastro de Produto</h1>
 
-<h:form id="formProduct">
-		<br/>
-		Descrição:	<h:inputText value="#{productController.product.description}" placeholder="description"/>
-		Quantidade:	<h:inputText value="#{productController.product.quantity}" placeholder="quantity"/>
-		Valor: <h:inputText value="#{productController.product.value}" placeholder="value"/>
+	<h:form id="formProduct">
+		<br />
+		Descrição:	<h:inputText
+			value="#{productController.product.description}"
+			placeholder="description" />
+		Quantidade:	<h:inputText value="#{productController.product.quantity}"
+			placeholder="quantity" />
+		Valor: <h:inputText value="#{productController.product.value}"
+			placeholder="value" />
 		<h:commandButton action="#{productController.save}" value="Salvar">
-			<f:ajax execute="formProduct" render="formProduct"></f:ajax>
+			<f:ajax execute="formProduct" render="formProduct:dtProduct"></f:ajax>
 		</h:commandButton>
 		<h:commandButton action="#{productController.cancel}" value="Cancelar">
 			<f:ajax execute="@this" render="formProduct"></f:ajax>
 		</h:commandButton>
-		<br/>
-		<br/>
-		<br/>
-		<h:dataTable id="dtProduct" value="#{productController.products}" var="pro">
-			<h:column><f:facet name="header">Descrição</f:facet>#{pro.description}</h:column>
-			<h:column><f:facet name="header">Quantidade</f:facet>#{pro.quantity}</h:column>
-			<h:column><f:facet name="header">Valor</f:facet>#{pro.value}</h:column>
-			<h:column><f:facet name="header">Ações</f:facet>
-				<h:commandButton action="#{productController.update(pro)}" value="Editar">
+		<br />
+		<br />
+		<br />
+		<h:dataTable id="dtProduct" value="#{productController.products}"
+			var="pro">
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>#{pro.description}</h:column>
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>#{pro.quantity}</h:column>
+			<h:column>
+				<f:facet name="header">Valor</f:facet>#{pro.value}</h:column>
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandButton action="#{productController.update(pro)}"
+					value="Editar">
 					<f:ajax execute="dtProduct" render="formProduct"></f:ajax>
 				</h:commandButton>
-				<h:commandButton action="#{productController.delete(cli)}" value="Excluir">
-					<f:ajax execute="dtProduct" render="formProduct"></f:ajax>
+				<h:commandButton action="#{productController.delete(pro)}"
+					value="Excluir">
+					<f:ajax render="formProduct:dtProduct"></f:ajax>
 				</h:commandButton>
 			</h:column>
 		</h:dataTable>
-</h:form>
+	</h:form>
 
-</body> 
+</body>
 </html>
