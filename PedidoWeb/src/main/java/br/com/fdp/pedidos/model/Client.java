@@ -40,6 +40,6 @@ public class Client {
 	@JoinColumn(nullable=false)
 	private State state;
 	@Embedded
-	private Address addres;
+	private Address address;
 
 }
