@@ -14,14 +14,14 @@
 			<h:inputText id="login" label="Login"
 				value="#{userController.user.login}" maxlength="50" />
 			<h:outputText id="senhaLabel" value="Senha:" />
-			<h:inputSecret id="senha" value="" />
+			<h:inputSecret id="senha" value="#{userController.user.senha}" />
 			<h:outputText id="statusLabel" value="Status:" />
 			<h:selectBooleanCheckbox id="ativostatus"
 				value="#{userController.user.ativo}" />
 		</h:panelGrid>
 		<h:panelGrid columns="2">
 			<h:commandButton action="#{userController.salvar}" value="Salvar">
-				<f:ajax execute="formulario" render="tabela"></f:ajax>
+				<f:ajax execute="formulario" render="formulario"></f:ajax>
 			</h:commandButton>
 
 			<h:commandButton rendered="#{userController.modoEdicao}"
@@ -33,7 +33,12 @@
 		<h:messages id="msg" />
 
 		<h:dataTable id="tabela" value="#{userController.users}" var="u"
-			style="width: 100%">
+			cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
+			rules="all" style="width: 100%" border="10">
+
+			<f:facet name="header">
+				<h:outputText value="Usuarios" />
+			</f:facet>
 			
 			<h:column id="columnCodigo">
 				<f:facet name="header">

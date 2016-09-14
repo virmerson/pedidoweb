@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.Order;
@@ -21,13 +24,13 @@ import br.com.fdp.pedidos.repository.StateRepository;
 @Named
 @ViewScoped
 public class OrderController {
-
+	@Getter@Setter
 	private Order order = new Order();
-
+	@Getter@Setter
 	private List<Order> orders;
-	
+	@Getter@Setter
 	private List<Client> clients;
-	
+	@Getter@Setter
 	private List<Ceremonial> ceremonials;
 
 	@Autowired
@@ -36,7 +39,7 @@ public class OrderController {
 	private ClientRepository clientRepository;
 	@Autowired
 	private CeremonialRepository ceremonialRepository;
-	
+	@Getter@Setter
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -69,48 +72,6 @@ public class OrderController {
 		order = new Order();
 		setModoEdicao(false);
 	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public List<Client> getClients() {
-		return clients;
-	}
-
-	public void setClients(List<Client> clients) {
-		this.clients = clients;
-	}
-
-	public List<Ceremonial> getCeremonials() {
-		return ceremonials;
-	}
-
-	public void setCeremonials(List<Ceremonial> ceremonials) {
-		this.ceremonials = ceremonials;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
-
-
 
 
 	

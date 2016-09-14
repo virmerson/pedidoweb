@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.Product;
@@ -15,12 +18,13 @@ import br.com.fdp.pedidos.repository.ProductRepository;
 @ViewScoped
 public class ProductController {
 	
-	
+	@Getter@Setter
 	private Product product = new Product();
-	
+	@Getter@Setter
 	private List<Product> products;
 	@Autowired
 	private ProductRepository productRepository;
+	@Getter@Setter
 	private boolean modoEdicao = false;
 	@PostConstruct
 	public void init(){
@@ -48,24 +52,7 @@ public class ProductController {
 		product = new Product();
 		setModoEdicao(false);
 	}
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	public List<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
+
 	
  
 }

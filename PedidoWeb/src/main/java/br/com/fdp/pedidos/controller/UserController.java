@@ -6,21 +6,31 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+
+
+
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.fdp.pedidos.model.Product;
 import br.com.fdp.pedidos.model.User;
 import br.com.fdp.pedidos.repository.UserRepository;
 
 @Named
 @ViewScoped
+
 public class UserController {
-
+	@Getter@Setter
 	private User user = new User();
-
+	@Getter@Setter
 	private List<User> users;
 	@Autowired
 	private UserRepository userRepository;
-
+	@Getter@Setter
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -62,28 +72,5 @@ public class UserController {
 		setModoEdicao(false);
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
 
 }

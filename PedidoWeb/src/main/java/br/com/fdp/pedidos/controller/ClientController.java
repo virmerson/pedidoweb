@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.Client;
@@ -16,16 +19,17 @@ import br.com.fdp.pedidos.repository.StateRepository;
 @Named
 @ViewScoped
 public class ClientController {
-
+	@Getter@Setter
 	private Client client = new Client();
-
+	@Getter@Setter
 	private List<Client> clients;
-
+	@Getter@Setter
 	private List<State> states;
 	@Autowired
 	private ClientRepository clientRepository;
 	@Autowired
 	private StateRepository stateRepository;
+	@Getter@Setter
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -56,36 +60,6 @@ public class ClientController {
 		client = new Client();
 		setModoEdicao(false);
 	}
-	public Client getClient() {
-		return client;
-	}
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public List<Client> getClients() {
-		return clients;
-	}
-
-	public void setClients(List<Client> clients) {
-		this.clients = clients;
-	}
-
-	public List<State> getStates() {
-		return states;
-	}
-
-	public void setStates(List<State> states) {
-		this.states = states;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
 
 }

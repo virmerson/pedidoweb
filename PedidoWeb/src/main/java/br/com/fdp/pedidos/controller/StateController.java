@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.State;
@@ -14,13 +17,13 @@ import br.com.fdp.pedidos.repository.StateRepository;
 @Named
 @ViewScoped
 public class StateController {
-	
+	@Getter@Setter
 	private State state = new State();
-	
+	@Getter@Setter
 	private List<State> states;
 	@Autowired
 	private StateRepository stateRepository;
-	
+	@Getter@Setter
 	private boolean modoEdicao = false;
 	
 	@PostConstruct
@@ -37,7 +40,7 @@ public class StateController {
 		setModoEdicao(false);
 	}
 	
-	public void remove(){
+	public void remove(State state){
 		stateRepository.delete(state);
 		states.remove(state);
 		state = new State();
@@ -52,28 +55,5 @@ public class StateController {
 		setModoEdicao(false);
 	}
 	
-	public State getState() {
-		return state;
-	}
-
-	public void setState(State state) {
-		this.state = state;
-	}
-
-	public List<State> getStates() {
-		return states;
-	}
-
-	public void setStates(List<State> states) {
-		this.states = states;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
 
 }

@@ -9,7 +9,7 @@
 	<h:form id="formulario">
 		<h:outputText id="titulo" value="Cadastro de Cliente"
 			style="font-weight: bold;" />
-		<h:panelGrid id="dados" columns="2">
+		<h:panelGrid id="dados" columns="4">
 			<h:outputText id="nomeLabel" value="Nome:" />
 			<h:inputText id="nome" label="Nome"
 				value="#{clientController.client.nome}" maxlength="50" />
@@ -61,7 +61,7 @@
 			<h:outputLabel for="estado" value="Estado:" />
 			<h:selectOneMenu id="estado" filter="true"
 				value="#{clientController.client.state}"
-				converter="omnifaces.SelectItemsConverter" required="true"
+				converter="#{stateConverter}" required="true"
 				requiredMessage="O campo 'Estado' é obrigatório">
 				<f:selectItem noSelectionOption="true"
 					itemLabel="Selecione um estado" />
@@ -80,7 +80,12 @@
 		</h:commandButton>
 		<h:messages id="msg" />
 		<h:dataTable id="tabela" value="#{clientController.clients}" var="c"
-			style="width: 100%">
+			cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
+			rules="all" style="width: 100%" border="10">
+
+			<f:facet name="header">
+				<h:outputText value="Clientes" />
+			</f:facet>>
 			
 			<h:column id="columnCodigo">
 				<f:facet name="header">

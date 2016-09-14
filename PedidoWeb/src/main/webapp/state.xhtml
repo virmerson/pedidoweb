@@ -17,7 +17,7 @@
 		</h:panelGrid>
 		<h:panelGrid columns="2">
 			<h:commandButton action="#{stateController.save}" value="Salvar">
-				<f:ajax execute="formulario" render="tabela"></f:ajax>
+				<f:ajax execute="formulario" render="formulario" ></f:ajax>
 			</h:commandButton>
 
 			<h:commandButton rendered="#{stateController.modoEdicao}"
@@ -29,7 +29,12 @@
 		<h:messages id="msg" />
 
 		<h:dataTable id="tabela" value="#{stateController.states}" var="s"
-			style="width: 100%">
+			cellpadding="5" cellspacing="3" first="0" rows="5" frame="hsides"
+			rules="all" style="width: 100%" border="10">
+
+			<f:facet name="header">
+				<h:outputText value="Estados" />
+			</f:facet>
 			
 			<h:column id="columnCodigo">
 				<f:facet name="header">

@@ -6,22 +6,27 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.Package;
+import br.com.fdp.pedidos.model.Product;
 import br.com.fdp.pedidos.repository.PackageRepository;
 
 @Named
 @ViewScoped
 public class PackageController {
-
+	@Getter@Setter
 	private Package embrulho = new Package();
-
+	@Getter@Setter
 	private List<Package> embrulhos;
 
 	@Autowired
 	private PackageRepository embrulhoRepository;
-	
+	@Getter@Setter
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -53,29 +58,5 @@ public class PackageController {
 		setModoEdicao(false);
 	}
 
-	public Package getEmbrulho() {
-		return embrulho;
-	}
-
-	public void setEmbrulho(Package embrulho) {
-		this.embrulho = embrulho;
-	}
-
-	public List<Package> getEmbrulhos() {
-		return embrulhos;
-	}
-
-	public void setEmbrulhos(List<Package> embrulhos) {
-		this.embrulhos = embrulhos;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
-	}
 	
-
 }

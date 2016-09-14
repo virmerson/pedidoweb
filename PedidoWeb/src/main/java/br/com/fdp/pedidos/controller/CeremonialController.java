@@ -6,6 +6,9 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.fdp.pedidos.model.Ceremonial;
@@ -17,14 +20,14 @@ import br.com.fdp.pedidos.repository.StateRepository;
 @Named
 @ViewScoped
 public class CeremonialController {
-
+	@Getter@Setter
 	private Ceremonial ceremonial = new Ceremonial();
-
+	@Getter@Setter
 	private List<Ceremonial> ceremonials;
 
 	@Autowired
 	private CeremonialRepository ceremonialRepository;
-	
+	@Getter@Setter
 	private boolean modoEdicao = false;
 
 	@PostConstruct
@@ -54,29 +57,6 @@ public class CeremonialController {
 	public void cancelar(){
 		ceremonial = new Ceremonial();
 		setModoEdicao(false);
-	}
-	public Ceremonial getCeremonial() {
-		return ceremonial;
-	}
-
-	public void setCeremonial(Ceremonial ceremonial) {
-		this.ceremonial = ceremonial;
-	}
-
-	public List<Ceremonial> getCeremonials() {
-		return ceremonials;
-	}
-
-	public void setCeremonials(List<Ceremonial> ceremonials) {
-		this.ceremonials = ceremonials;
-	}
-
-	public boolean isModoEdicao() {
-		return modoEdicao;
-	}
-
-	public void setModoEdicao(boolean modoEdicao) {
-		this.modoEdicao = modoEdicao;
 	}
 
 }

@@ -1,5 +1,10 @@
 package br.com.fdp.pedidos.teste;
 
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+import br.com.fdp.pedidos.model.Product;
 import br.com.fdp.pedidos.model.User;
 import br.com.fdp.pedidos.repository.UserRepository;
 
@@ -23,16 +28,9 @@ public class UserRepositoryTest {
 
 	@Test
 	public void salvar() {
-
+	
 		User user = new User();
-		user.setLogin("Jao");
-		user.setSenha("1234");
-		user.setAtivo(true);
-
-		User userSalvo = userRepostory.save(user);
-
-		assertThat(userSalvo.getLogin()).isEqualTo(userSalvo.getLogin());
-		assertThat(userSalvo.getSenha()).isEqualTo(userSalvo.getSenha());
+		
 	}
 
 }
